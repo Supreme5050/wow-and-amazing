@@ -1,0 +1,134 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  BagIcon,
+  ChevronDownIcon,
+  CloseIcon,
+  HeartIcon,
+  MenuIcon,
+  SearchIcon,
+} from "@/components/icons/LineIcons";
+
+const navigation = [
+  { label: "Shop All", href: "/category/all", hasMenu: true },
+  { label: "Categories", href: "/category/all", hasMenu: true },
+  { label: "Services", href: "/services" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <>
+      <header className="h-16 border-b border-hairline bg-white desktop:h-[88px]">
+        <div className="site-container grid h-full grid-cols-[40px_1fr_auto] items-center gap-2 desktop:grid-cols-[180px_1fr_180px] desktop:gap-6">
+          <button
+            className="icon-button desktop:hidden"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <MenuIcon />
+          </button>
+
+          <Link
+            className="justify-self-center desktop:justify-self-start"
+            href="/"
+            aria-label="Wow & Amazing home"
+          >
+            <Image
+              className="hidden h-12 w-auto desktop:block"
+              src="/brand/logo-full.png"
+              alt="Wow & Amazing"
+              width={1081}
+              height={551}
+              priority
+            />
+            <Image
+              className="h-8 w-auto desktop:hidden"
+              src="/brand/logo-mark.png"
+              alt="Wow & Amazing"
+              width={695}
+              height={371}
+              priority
+            />
+          </Link>
+
+          <nav className="hidden items-stretch justify-center self-stretch desktop:flex" aria-label="Primary navigation">
+            {navigation.map((item) => (
+              <Link className="nav-link" href={item.href} key={item.label}>
+                <span>{item.label}</span>
+                {item.hasMenu ? <ChevronDownIcon /> : null}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center justify-end gap-1 desktop:gap-2">
+            <button className="icon-button" type="button" aria-label="Search">
+              <SearchIcon />
+            </button>
+            <Link className="icon-button relative" href="/wishlist" aria-label="Wishlist">
+              <HeartIcon />
+            </Link>
+            <button className="icon-button relative" type="button" aria-label="Open cart">
+              <BagIcon />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {mobileMenuOpen ? (
+        <div className="fixed inset-0 z-50 desktop:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+          <button
+            type="button"
+            className="absolute inset-0 bg-ink/40"
+            aria-label="Close navigation"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <aside id="mobile-navigation" className="relative h-full w-[min(88vw,360px)] bg-white">
+            <div className="flex h-16 items-center justify-between border-b border-hairline px-4">
+              <Link href="/" aria-label="Wow & Amazing home" onClick={() => setMobileMenuOpen(false)}>
+                <Image
+                  className="h-8 w-auto"
+                  src="/brand/logo-mark.png"
+                  alt="Wow & Amazing"
+                  width={695}
+                  height={371}
+                />
+              </Link>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Close navigation"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <CloseIcon />
+              </button>
+            </div>
+
+            <nav className="px-4 py-4" aria-label="Mobile primary navigation">
+              {navigation.map((item) => (
+                <Link
+                  className="mobile-nav-link"
+                  href={item.href}
+                  key={item.label}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>{item.label}</span>
+                  {item.hasMenu ? <ChevronDownIcon /> : null}
+                </Link>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      ) : null}
+    </>
+  );
+}

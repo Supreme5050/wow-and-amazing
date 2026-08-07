@@ -1,0 +1,30 @@
+WOW & AMAZING — PHASE 2 HOME PAGE
+
+This package contains the Phase 1 foundation plus the complete Phase 2 Home page.
+
+Included:
+- Hero section
+- Trust / Feature Bar
+- Shop by Category
+- Featured Products
+- Our Services teaser
+- Locked category/product seed data
+- Phase 2 Supabase seed migration
+- Responsive mobile, tablet, and desktop layouts
+- No Framer Motion or launch animation pass yet (reserved for Phase 6)
+
+Run in Windows CMD:
+
+cd /d "%USERPROFILE%\Desktop\wow-and-amazing"
+npm install
+npm run lint
+npx tsc --noEmit
+npm run build
+npm run dev
+
+Open:
+http://localhost:3004
+
+Supabase:
+After the Phase 1 schema migration has run, open and run:
+supabase\migrations\202607120002_seed_catalog.sql

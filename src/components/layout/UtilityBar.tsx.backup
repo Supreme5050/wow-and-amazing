@@ -1,0 +1,32 @@
+import Link from "next/link";
+import { UserIcon } from "@/components/icons/LineIcons";
+
+export function UtilityBar() {
+  return (
+    <div className="h-9 border-b border-hairline bg-cream text-caption text-ink tablet:h-10">
+      <div className="site-container flex h-full items-center justify-end tablet:justify-between">
+        <div className="hidden items-center tablet:flex" aria-label="Store benefits">
+          <span>Free shipping on orders over $50</span>
+          <span className="mx-4 h-4 w-px bg-hairline" aria-hidden="true" />
+          <span>Premium quality. Trusted by professionals.</span>
+        </div>
+
+        <div className="flex h-full items-center gap-4 tablet:gap-6">
+          <Link className="utility-link" href="/track-order">
+            Track Order
+          </Link>
+          <Link className="utility-link" href="/support">
+            Help &amp; Support
+          </Link>
+          <Link
+            className="icon-link h-9 w-9 tablet:h-10 tablet:w-10"
+            href="/account"
+            aria-label="Account"
+          >
+            <UserIcon size={18} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

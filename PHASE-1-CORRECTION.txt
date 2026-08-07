@@ -1,0 +1,17 @@
+WOW & AMAZING — PHASE 1 FOUNDATION CORRECTION
+
+This patch fully replaces:
+- src/app/globals.css
+- src/components/layout/Header.tsx
+- src/components/layout/UtilityBar.tsx
+- src/components/layout/Footer.tsx
+
+Corrections:
+- Desktop hamburger hidden.
+- Desktop navigation kept on one centered row.
+- Search, wishlist, and cart aligned at the far right.
+- Desktop full logo enlarged and aligned correctly.
+- Mobile uses the WA monogram and hamburger layout.
+- Utility bar uses the required 13px copy and exact heights.
+- Footer spacing, feature callouts, logo placement, and newsletter area refined.
+- No Phase 2 content or Phase 6 animation added.

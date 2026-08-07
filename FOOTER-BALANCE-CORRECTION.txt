@@ -1,0 +1,17 @@
+Wow & Amazing — Footer Balance Correction
+
+Changed files:
+- src/components/layout/Footer.tsx
+- src/app/globals.css
+
+Desktop footer correction:
+- Four feature callouts and the logo now form one true five-column grid.
+- Every column uses the same minimum height and vertical centring.
+- Description blocks use consistent space so wrapped text does not shift a card.
+- Footer logo is slightly reduced and centred inside an equal-width fifth column.
+- Tablet and mobile stacking remain responsive.
+
+Verification completed:
+- npm run lint
+- npx tsc --noEmit
+- npm run build
