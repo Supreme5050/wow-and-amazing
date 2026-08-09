@@ -33,6 +33,26 @@ export function SearchIcon({ size = 20, ...props }: IconProps) {
   );
 }
 
+export function EyeIcon({ size = 20, ...props }: IconProps) {
+  return (
+    <svg width={size} height={size} {...baseProps} {...props}>
+      <path d="M2.75 12s3.35-5.25 9.25-5.25S21.25 12 21.25 12 17.9 17.25 12 17.25 2.75 12 2.75 12Z" />
+      <circle cx="12" cy="12" r="2.4" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon({ size = 20, ...props }: IconProps) {
+  return (
+    <svg width={size} height={size} {...baseProps} {...props}>
+      <path d="M3 3 21 21" />
+      <path d="M10.6 6.9A9.9 9.9 0 0 1 12 6.75c5.9 0 9.25 5.25 9.25 5.25a15.2 15.2 0 0 1-2.7 3.2" />
+      <path d="M6.2 6.2C3.95 7.7 2.75 12 2.75 12S6.1 17.25 12 17.25c1.22 0 2.34-.22 3.36-.59" />
+      <path d="M10.3 10.3a2.4 2.4 0 0 0 3.4 3.4" />
+    </svg>
+  );
+}
+
 export function HeartIcon({ size = 20, ...props }: IconProps) {
   return (
     <svg width={size} height={size} {...baseProps} {...props}>

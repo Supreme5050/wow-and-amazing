@@ -17076,3 +17076,365 @@ body:has(.admin-auth-page) #main-content {
     text-align: left;
   }
 }
+
+/* ========================================================================== */
+/* PHASE 8G — MOBILE PREMIUM AUTH + PRODUCTION AUTH REDIRECT POLISH           */
+/* ========================================================================== */
+
+.password-input-shell {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-shell .password-input {
+  width: 100%;
+  padding-right: 52px !important;
+}
+
+.password-visibility-toggle {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b6b6b;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.password-visibility-toggle:hover,
+.password-visibility-toggle:focus-visible {
+  background: #f6eee3;
+  color: #9c6b12;
+  outline: none;
+}
+
+/* Keep Chrome/Samsung autofill visually inside the Wow & Amazing palette. */
+.customer-auth-card input:-webkit-autofill,
+.customer-auth-card input:-webkit-autofill:hover,
+.customer-auth-card input:-webkit-autofill:focus,
+.email-verification-card input:-webkit-autofill,
+.email-verification-card input:-webkit-autofill:hover,
+.email-verification-card input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #1a1a1a !important;
+  -webkit-box-shadow: 0 0 0 1000px #fffdf9 inset !important;
+  box-shadow: 0 0 0 1000px #fffdf9 inset !important;
+  caret-color: #1a1a1a;
+  transition: background-color 9999s ease-out 0s;
+}
+
+@media (max-width: 640px) {
+  /* Mobile header: retain the official compact mark but give it desktop-level presence. */
+  .main-header {
+    height: 70px !important;
+  }
+
+  .header-inner {
+    gap: 8px !important;
+  }
+
+  .header-brand-area {
+    gap: 6px !important;
+  }
+
+  .header-logo-link {
+    min-width: 60px;
+  }
+
+  .header-logo-mobile {
+    display: block !important;
+    width: 60px !important;
+    height: auto !important;
+    max-height: 34px;
+    object-fit: contain;
+  }
+
+  .mobile-menu-trigger,
+  .mobile-search-trigger,
+  .header-actions .icon-button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .header-actions {
+    gap: 0 !important;
+  }
+
+  /* Home hero: follow the locked 34px mobile display scale instead of desktop-like sizing. */
+  .home-hero {
+    min-height: 540px !important;
+  }
+
+  .home-hero-inner {
+    min-height: 540px !important;
+    align-items: flex-start !important;
+    padding: 50px 0 58px !important;
+  }
+
+  .home-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(246, 238, 227, .98) 0%, rgba(246, 238, 227, .93) 58%, rgba(246, 238, 227, .66) 100%) !important;
+  }
+
+  .home-hero-copy {
+    width: 100% !important;
+    max-width: 360px !important;
+    padding: 0 !important;
+  }
+
+  .home-hero-copy .wa-eyebrow {
+    margin-bottom: 10px !important;
+    font-size: 11px !important;
+  }
+
+  .home-hero-title {
+    max-width: 350px !important;
+    margin-top: 8px !important;
+    font-size: 34px !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.025em !important;
+    text-wrap: balance;
+  }
+
+  .home-hero-subtext {
+    max-width: 345px !important;
+    margin-top: 18px !important;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  .home-hero-actions {
+    width: 100% !important;
+    max-width: 345px !important;
+    gap: 10px !important;
+    margin-top: 24px !important;
+  }
+
+  .home-hero-actions .hero-button {
+    min-height: 48px !important;
+    padding: 13px 18px !important;
+    font-size: 13px !important;
+  }
+
+  /* Account/auth pages: compact editorial layout, not a desktop card squeezed onto a phone. */
+  .premium-account-page {
+    padding: 20px 0 48px !important;
+  }
+
+  .premium-account-page .account-page-shell,
+  .auth-status-page .auth-status-shell {
+    width: min(calc(100% - 24px), 1280px) !important;
+  }
+
+  .customer-auth-shell {
+    min-height: 0 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 16px 44px rgba(26, 26, 26, .08) !important;
+  }
+
+  .customer-auth-story {
+    min-height: 220px !important;
+  }
+
+  .customer-auth-story-copy {
+    min-height: 220px !important;
+    justify-content: flex-end !important;
+    padding: 26px 22px !important;
+  }
+
+  .customer-auth-story-copy h1 {
+    max-width: 320px !important;
+    margin: 8px 0 10px !important;
+    font-size: 28px !important;
+    line-height: 1.08 !important;
+  }
+
+  .customer-auth-story-copy > p:not(.wa-eyebrow) {
+    max-width: 330px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .customer-auth-points {
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+    margin-top: 16px !important;
+  }
+
+  .customer-auth-points span {
+    font-size: 11px !important;
+  }
+
+  .customer-auth-card.account-auth-card {
+    padding: 28px 20px 30px !important;
+  }
+
+  .customer-auth-card .account-auth-tabs {
+    margin: 0 0 24px !important;
+    border-radius: 9px !important;
+  }
+
+  .customer-auth-card .account-auth-tabs button {
+    min-height: 46px !important;
+    font-size: 13px !important;
+  }
+
+  .customer-auth-card .account-card-heading {
+    margin-bottom: 22px !important;
+  }
+
+  .customer-auth-card .account-card-heading h2,
+  .customer-auth-special-state h2 {
+    margin: 7px 0 9px !important;
+    font-size: 28px !important;
+    line-height: 1.1 !important;
+  }
+
+  .customer-auth-card .account-card-heading p:last-child,
+  .customer-auth-special-state > p:not(.wa-eyebrow) {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .customer-auth-card form {
+    gap: 13px !important;
+  }
+
+  .customer-auth-card label,
+  .customer-auth-special-state label,
+  .email-verification-resend label {
+    gap: 7px !important;
+    font-size: 12px !important;
+  }
+
+  .customer-auth-card .input-field,
+  .customer-auth-special-state .input-field,
+  .email-verification-resend .input-field,
+  .password-input-shell .password-input {
+    min-height: 52px !important;
+    border-radius: 10px !important;
+    padding: 12px 14px !important;
+    font-size: 16px !important;
+  }
+
+  .password-input-shell .password-input {
+    padding-right: 52px !important;
+  }
+
+  .customer-auth-card form > .button-primary,
+  .customer-auth-special-state > .button-primary {
+    min-height: 52px !important;
+    margin-top: 3px !important;
+    font-size: 14px !important;
+  }
+
+  .customer-auth-consent {
+    gap: 9px !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  .customer-auth-consent input {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .customer-auth-assurance {
+    margin-top: 20px !important;
+    padding-top: 16px !important;
+  }
+
+  /* Verification and callback screens. */
+  .auth-status-page {
+    min-height: 0 !important;
+    padding: 20px 0 48px !important;
+  }
+
+  .auth-status-shell {
+    min-height: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .account-verification-shell,
+  .email-verification-card,
+  .email-verified-card,
+  .auth-callback-card {
+    width: 100% !important;
+    max-width: 520px !important;
+    border-radius: 18px !important;
+    padding: 28px 20px !important;
+    box-shadow: 0 16px 44px rgba(26,26,26,.07) !important;
+  }
+
+  .account-verification-icon,
+  .email-verification-icon,
+  .email-verified-icon,
+  .auth-callback-icon {
+    width: 54px !important;
+    height: 54px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .account-verification-shell h1,
+  .email-verification-card h1,
+  .email-verified-card h1,
+  .auth-callback-card h1 {
+    margin: 9px 0 12px !important;
+    font-size: 32px !important;
+    line-height: 1.08 !important;
+  }
+
+  .account-verification-shell > p:not(.wa-eyebrow),
+  .email-verification-card > p:not(.wa-eyebrow),
+  .email-verified-card > p:not(.wa-eyebrow),
+  .auth-callback-card > p:not(.wa-eyebrow) {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere;
+  }
+
+  .email-verification-steps {
+    gap: 0 !important;
+    margin: 22px 0 4px !important;
+    border-block: 1px solid #e4dacb;
+  }
+
+  .email-verification-steps span {
+    gap: 9px !important;
+    min-height: 48px;
+    border-bottom: 1px solid #eee5d8;
+    font-size: 12px !important;
+    line-height: 1.4;
+  }
+
+  .email-verification-steps span:last-child {
+    border-bottom: 0;
+  }
+
+  .email-verification-resend {
+    gap: 10px !important;
+    margin-top: 20px !important;
+  }
+
+  .email-verification-resend .button-primary {
+    min-height: 52px !important;
+    font-size: 13px !important;
+  }
+
+  .email-verification-help {
+    margin-top: 18px !important;
+    padding: 13px !important;
+    font-size: 11px !important;
+  }
+
+  .email-verification-back {
+    margin-top: 18px !important;
+  }
+}

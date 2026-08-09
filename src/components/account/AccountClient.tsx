@@ -6,11 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import { ArrowRightIcon, BagIcon, BoxIcon, CheckIcon, HeartIcon, HeadphonesIcon, MailIcon, MapPinIcon, ShieldIcon, UserIcon } from "@/components/icons/LineIcons";
+import { ArrowRightIcon, BagIcon, BoxIcon, CheckIcon, EyeIcon, EyeOffIcon, HeartIcon, HeadphonesIcon, MailIcon, MapPinIcon, ShieldIcon, UserIcon } from "@/components/icons/LineIcons";
 import { useStore } from "@/components/store/StoreProvider";
 import { orderStatusLabel } from "@/lib/orders/status";
 import { formatStoreMoney } from "@/lib/store/currency";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getAuthCallbackUrl } from "@/lib/auth/site-url";
 
 const publicDataMode = process.env.NEXT_PUBLIC_DATA_MODE === "live" ? "live" : "test";
 const visibleOrderTestFlag = publicDataMode !== "live";
@@ -49,6 +50,32 @@ type AccountAddress = {
   country: string;
   is_default: boolean;
 };
+
+function PasswordInput({ name, autoComplete, placeholder }: { name: string; autoComplete: string; placeholder?: string }) {
+  const [visible, setVisible] = useState(false);
+  return (
+    <div className="password-input-shell">
+      <input
+        className="input-field password-input"
+        name={name}
+        type={visible ? "text" : "password"}
+        minLength={8}
+        required
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+      />
+      <button
+        className="password-visibility-toggle"
+        type="button"
+        aria-label={visible ? "Hide password" : "Show password"}
+        aria-pressed={visible}
+        onClick={() => setVisible((current) => !current)}
+      >
+        {visible ? <EyeOffIcon size={19} /> : <EyeIcon size={19} />}
+      </button>
+    </div>
+  );
+}
 
 export function AccountClient() {
   const [user, setUser] = useState<User | null>(null);
@@ -170,13 +197,13 @@ export function AccountClient() {
 
     const safeReturnTo = returnTo.startsWith("/") && !returnTo.startsWith("//") ? returnTo : "/account";
     const confirmationNext = safeReturnTo === "/account" ? "/account/verified" : safeReturnTo;
-    const callbackUrl = `${window.location.origin}/auth/callback?next=${encodeURIComponent(confirmationNext)}`;
+    const callbackUrl = getAuthCallbackUrl(confirmationNext);
 
     if (mode === "forgot") {
       setSendingReset(true);
       try {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent("/account?mode=recovery")}`,
+          redirectTo: getAuthCallbackUrl("/account?mode=recovery"),
         });
 
         if (error) {
@@ -273,7 +300,7 @@ export function AccountClient() {
         type: "signup",
         email: verificationEmail,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(safeReturnTo)}`,
+          emailRedirectTo: getAuthCallbackUrl(safeReturnTo),
         },
       });
       if (error) throw error;
@@ -363,8 +390,8 @@ export function AccountClient() {
         <h2>Create a new password</h2>
         <p>Use a strong password that you have not used on another website.</p>
         <form onSubmit={changePassword}>
-          <label>New password<input className="input-field" name="password" type="password" minLength={8} required autoComplete="new-password" /></label>
-          <label>Confirm new password<input className="input-field" name="confirmPassword" type="password" minLength={8} required autoComplete="new-password" /></label>
+          <label>New password<PasswordInput name="password" autoComplete="new-password" /></label>
+          <label>Confirm new password<PasswordInput name="confirmPassword" autoComplete="new-password" /></label>
           <button className="button-primary" type="submit" disabled={savingPassword}>{savingPassword ? "Updating…" : "Update Password"}</button>
         </form>
         {message ? <p className="form-message" role="status">{message}</p> : null}
@@ -516,8 +543,8 @@ export function AccountClient() {
 
             <form className="account-settings-card" onSubmit={changePassword}>
               <div className="account-card-heading"><p className="wa-eyebrow">SECURITY</p><h3>Change password</h3><p>Your new password must contain at least eight characters.</p></div>
-              <label>New password<input className="input-field" name="password" type="password" minLength={8} required autoComplete="new-password" /></label>
-              <label>Confirm new password<input className="input-field" name="confirmPassword" type="password" minLength={8} required autoComplete="new-password" /></label>
+              <label>New password<PasswordInput name="password" autoComplete="new-password" /></label>
+              <label>Confirm new password<PasswordInput name="confirmPassword" autoComplete="new-password" /></label>
               <button className="button-secondary" type="submit" disabled={savingPassword}>{savingPassword ? "Updating…" : "Change Password"}</button>
             </form>
           </div>
@@ -574,8 +601,8 @@ export function AccountClient() {
               {mode === "signup" ? <label>Full name<input className="input-field" name="fullName" required autoComplete="name" /></label> : null}
               <label>Email address<input className="input-field" name="email" type="email" required autoComplete="email" /></label>
               {mode === "signup" ? <label>Phone number<input className="input-field" name="phone" type="tel" required autoComplete="tel" placeholder="e.g. +234 800 000 0000" /></label> : null}
-              {mode !== "forgot" ? <label>Password<input className="input-field" name="password" type="password" minLength={8} required autoComplete={mode === "signin" ? "current-password" : "new-password"} /></label> : null}
-              {mode === "signup" ? <label>Confirm password<input className="input-field" name="confirmPassword" type="password" minLength={8} required autoComplete="new-password" /></label> : null}
+              {mode !== "forgot" ? <label>Password<PasswordInput name="password" autoComplete={mode === "signin" ? "current-password" : "new-password"} /></label> : null}
+              {mode === "signup" ? <label>Confirm password<PasswordInput name="confirmPassword" autoComplete="new-password" /></label> : null}
               {mode === "signup" ? <label className="customer-auth-consent"><input type="checkbox" name="acceptTerms" required /><span>I agree to the <Link href="/support">Terms, Privacy Policy, and account communication required to complete orders.</Link></span></label> : null}
               <button className="button-primary" type="submit" disabled={mode === "forgot" && sendingReset}>{mode === "signin" ? "Sign in" : mode === "signup" ? "Create Account & Verify Email" : sendingReset ? "Sending…" : "Send Reset Link"}</button>
             </form>

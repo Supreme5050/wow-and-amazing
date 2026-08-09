@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { CheckIcon, MailIcon, ShieldIcon } from "@/components/icons/LineIcons";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getAuthCallbackUrl } from "@/lib/auth/site-url";
 
 function safeNextPath(value: string) {
   if (!value.startsWith("/") || value.startsWith("//")) return "/account/verified";
@@ -35,7 +36,7 @@ export function EmailVerificationCard({ email, nextPath = "/account/verified" }:
         type: "signup",
         email: normalizedEmail,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(safeNextPath(nextPath))}`,
+          emailRedirectTo: getAuthCallbackUrl(safeNextPath(nextPath)),
         },
       });
       if (error) throw error;
