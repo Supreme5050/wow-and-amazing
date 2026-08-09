@@ -17438,3 +17438,347 @@ body:has(.admin-auth-page) #main-content {
     margin-top: 18px !important;
   }
 }
+
+/* ================================================================
+   PHASE 8H — MOBILE COMMERCE EXPERIENCE
+   Dense, polished mobile shopping flow while preserving desktop UI.
+   ================================================================ */
+.mobile-commerce-search-row,
+.mobile-department-heading,
+.department-label-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Make the header feel like a purpose-built mobile store, not a desktop header squeezed smaller. */
+  .main-header,
+  .main-header-slot,
+  .header-inner {
+    min-height: 64px !important;
+    height: 64px !important;
+  }
+
+  .header-inner {
+    width: 100% !important;
+    padding-inline: 14px !important;
+  }
+
+  .header-logo-link {
+    min-width: 52px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-logo-mobile {
+    width: 52px !important;
+    max-height: 30px !important;
+  }
+
+  .mobile-menu-trigger,
+  .header-actions .icon-button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .header-actions {
+    margin-left: auto !important;
+    gap: 1px !important;
+  }
+
+  .mobile-search-trigger {
+    display: none !important;
+  }
+
+  .mobile-commerce-search-row {
+    display: block;
+    padding: 8px 14px 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #d9cfbe;
+  }
+
+  .mobile-commerce-search-button {
+    display: flex;
+    width: 100%;
+    height: 44px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    border: 1px solid #d9cfbe;
+    border-radius: 10px;
+    background: #fffdf9;
+    color: #6b6b6b;
+    font: 500 13px/1 Inter, system-ui, sans-serif;
+    text-align: left;
+  }
+
+  .mobile-commerce-search-button svg {
+    flex: 0 0 auto;
+    color: #1a1a1a;
+  }
+
+  /* Hero becomes a concise campaign panel so shoppers reach departments/products sooner. */
+  .home-hero {
+    min-height: 410px !important;
+    border-bottom: 0 !important;
+  }
+
+  .home-hero-media img {
+    object-position: 66% center !important;
+  }
+
+  .home-hero-overlay {
+    background:
+      linear-gradient(90deg, rgba(246, 238, 227, .97) 0%, rgba(246, 238, 227, .92) 56%, rgba(246, 238, 227, .52) 100%) !important;
+  }
+
+  .home-hero-inner {
+    min-height: 410px !important;
+    padding: 32px 0 28px !important;
+    align-items: center !important;
+  }
+
+  .home-hero-copy {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .home-hero-copy .wa-eyebrow {
+    margin: 0 0 9px !important;
+    font-size: 10px !important;
+    letter-spacing: .15em !important;
+  }
+
+  .home-hero-title {
+    max-width: 315px !important;
+    margin: 0 !important;
+    font-size: 31px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.028em !important;
+  }
+
+  .home-hero-title br {
+    display: none;
+  }
+
+  .home-hero-subtext {
+    max-width: 330px !important;
+    margin: 16px 0 0 !important;
+    font-size: 13px !important;
+    line-height: 1.48 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .home-hero-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    gap: 8px !important;
+    margin-top: 20px !important;
+  }
+
+  .home-hero-actions .hero-button {
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 10px 8px !important;
+    border-radius: 7px !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
+
+  .home-hero-side-link,
+  .home-hero-dots,
+  .home-hero-featured-note {
+    display: none !important;
+  }
+
+  /* All four departments are visible at once — no awkward half-card or hidden first items. */
+  .home-category-ribbon {
+    padding: 0 !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #d9cfbe !important;
+  }
+
+  .mobile-department-heading {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 14px 4px !important;
+  }
+
+  .mobile-department-heading strong {
+    color: #1a1a1a;
+    font: 600 13px/1.2 Inter, system-ui, sans-serif;
+  }
+
+  .mobile-department-heading a {
+    color: #9c6b12;
+    font: 600 10px/1 Inter, system-ui, sans-serif;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .home-category-ribbon-inner {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 4px !important;
+    overflow: visible !important;
+    padding: 10px 10px 16px !important;
+    scroll-snap-type: none !important;
+  }
+
+  .home-category-ribbon-inner > * {
+    min-width: 0 !important;
+    width: auto !important;
+  }
+
+  .home-category-ribbon-item {
+    display: flex !important;
+    min-height: 84px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 7px !important;
+    padding: 2px !important;
+    text-align: center !important;
+  }
+
+  .home-category-ribbon-image {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    border: 1px solid #d9cfbe !important;
+    box-shadow: 0 5px 14px rgba(26, 26, 26, .06) !important;
+  }
+
+  .home-category-ribbon-item > span:last-child {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .department-label-desktop {
+    display: none !important;
+  }
+
+  .department-label-mobile {
+    display: block !important;
+    min-height: 27px;
+    color: #1a1a1a !important;
+    font: 600 10.5px/1.28 Inter, system-ui, sans-serif !important;
+    letter-spacing: -.01em;
+  }
+
+  .home-category-ribbon-item small {
+    display: none !important;
+  }
+
+  /* Denser merchandising: two product cards are visible immediately, like a real mobile store. */
+  .editorial-section {
+    padding: 28px 0 !important;
+  }
+
+  .editorial-section .site-container {
+    width: min(calc(100% - 24px), 1280px) !important;
+  }
+
+  .editorial-section-heading {
+    align-items: flex-end !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .editorial-section-heading .wa-eyebrow {
+    font-size: 9.5px !important;
+  }
+
+  .editorial-section-heading h2 {
+    margin-top: 3px !important;
+    font-size: 24px !important;
+    line-height: 1.08 !important;
+  }
+
+  .editorial-section-heading > a {
+    flex: 0 0 auto;
+    padding-bottom: 3px;
+    font-size: 9px !important;
+  }
+
+  .editorial-best-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .editorial-products-grid,
+  .editorial-arrivals-grid {
+    grid-column: 1 / -1 !important;
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+    padding: 0 0 7px !important;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .editorial-products-grid::-webkit-scrollbar,
+  .editorial-arrivals-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .editorial-products-grid > *,
+  .editorial-arrivals-grid > * {
+    flex: 0 0 min(46vw, 176px) !important;
+    width: min(46vw, 176px) !important;
+    min-width: min(46vw, 176px) !important;
+    scroll-snap-align: start;
+  }
+
+  .editorial-products-grid .product-card,
+  .editorial-arrivals-grid .product-card {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .editorial-promo-card {
+    min-height: 168px !important;
+    border-radius: 12px !important;
+  }
+
+  .editorial-promo-copy {
+    padding: 14px !important;
+  }
+
+  .editorial-promo-copy small {
+    font-size: 8px !important;
+  }
+
+  .editorial-promo-copy strong {
+    font-size: 19px !important;
+    line-height: 1.02 !important;
+  }
+
+  .editorial-promo-copy em {
+    font-size: 9px !important;
+  }
+
+  /* Keep service/trust content compact so the phone experience stays commerce-first. */
+  .editorial-trust-item {
+    min-height: 82px !important;
+    padding: 14px 10px !important;
+  }
+
+  .editorial-trust-item strong {
+    font-size: 11px !important;
+  }
+
+  .editorial-trust-item small {
+    font-size: 9px !important;
+  }
+}

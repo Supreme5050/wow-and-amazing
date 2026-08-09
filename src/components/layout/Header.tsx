@@ -118,6 +118,13 @@ export function Header({ categories }: { categories: CategorySeed[] }) {
         </header>
       </div>
 
+      <div className="mobile-commerce-search-row">
+        <button className="mobile-commerce-search-button" type="button" aria-label="Search products, services and rentals" aria-expanded={searchOpen} onClick={() => setSearchOpen(true)}>
+          <SearchIcon size={18} />
+          <span>Search products, services &amp; rentals</span>
+        </button>
+      </div>
+
       <SearchOverlay open={searchOpen} sticky={sticky} onClose={closeSearch} />
 
       <AnimatePresence>
