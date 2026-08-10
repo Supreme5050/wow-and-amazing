@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheckIcon, KeyIcon, ShieldIcon } from "@/components/icons/LineIcons";
+import { CheckIcon, EyeIcon, EyeOffIcon, KeyIcon, ShieldIcon } from "@/components/icons/LineIcons";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export function AdminLogin() {
@@ -12,6 +12,7 @@ export function AdminLogin() {
   const [mode, setMode] = useState<"signin" | "create">("signin");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function bootstrap(accessToken: string) {
     const response = await fetch("/api/admin/bootstrap", {
@@ -96,7 +97,29 @@ export function AdminLogin() {
           <form className="admin-auth-form" onSubmit={submit}>
             {mode === "create" ? <label>Owner name<input className="input-field" name="fullName" autoComplete="name" placeholder="Full name" required /></label> : null}
             <label>Owner email<input className="input-field" name="email" type="email" autoComplete="email" placeholder="owner@itsamazing.com.ng" required /></label>
-            <label>Password<input className="input-field" name="password" type="password" minLength={8} autoComplete={mode === "signin" ? "current-password" : "new-password"} placeholder="Minimum 8 characters" required /></label>
+            <label>
+              Password
+              <div className="password-input-shell">
+                <input
+                  className="input-field password-input"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  minLength={8}
+                  autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                  placeholder="Minimum 8 characters"
+                  required
+                />
+                <button
+                  className="password-visibility-toggle"
+                  type="button"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((current) => !current)}
+                >
+                  {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
+                </button>
+              </div>
+            </label>
             <button className="button-primary" type="submit" disabled={loading}><KeyIcon size={17} />{loading ? "Please wait…" : mode === "signin" ? "Enter Owner Dashboard" : "Create Owner Account"}</button>
           </form>
           {message ? <p className="admin-form-message" role="status">{message}</p> : null}
