@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { HeartIcon } from "@/components/icons/LineIcons";
@@ -34,9 +33,9 @@ export function ProductCard({ product }: { product: ProductSeed }) {
     <article className={rental ? "product-card rental-product-card" : "product-card"}>
       <div className="product-image-frame">
         {rentalStatus ? <span className={`rental-status-badge ${rentalStatus}`}>{rentalAvailabilityLabel(rentalStatus)}</span> : product.isFeatured ? <span className="product-card-badge">Best seller</span> : null}
-        <Link href={`/product/${product.slug}`} aria-label={`View ${displayName}`}>
+        <a href={`/product/${product.slug}`} aria-label={`View ${displayName}`}>
           <Image className="product-image" src={product.image} alt={displayName} width={420} height={420} unoptimized={product.image.startsWith("http")} />
-        </Link>
+        </a>
         <motion.button className={saved ? "product-wishlist-button product-wishlist-button-active" : "product-wishlist-button"} type="button" aria-label={saved ? `Remove ${displayName} from wishlist` : `Save ${displayName} to wishlist`} aria-pressed={saved} animate={saved && !reduceMotion ? { scale: [1, 1.18, 1] } : { scale: 1 }} transition={{ duration: 0.2 }} onClick={() => toggleWishlist(product.id)}>
           <HeartIcon size={19} className={saved ? "wishlist-heart-filled" : undefined} />
         </motion.button>
@@ -44,7 +43,7 @@ export function ProductCard({ product }: { product: ProductSeed }) {
       </div>
       <div className="product-card-copy">
         <p className="product-card-category">{rental ? "House for rent" : department?.name ?? product.categorySlug.replaceAll("-", " ")}</p>
-        <Link className="product-name" href={`/product/${product.slug}`}>{displayName}</Link>
+        <a className="product-name" href={`/product/${product.slug}`}>{displayName}</a>
         {rental ? (
           <p className="product-card-rental-line">
             {product.rentalBedrooms !== undefined ? `${product.rentalBedrooms} Bed${product.rentalBedrooms === 1 ? "" : "s"}` : null}
@@ -56,7 +55,7 @@ export function ProductCard({ product }: { product: ProductSeed }) {
         ) : null}
         <div className="product-card-price-row"><p className="product-price">{rental ? <><small>Rent</small>{formatStoreMoney(product.price)}</> : formatStoreMoney(product.price)}</p><span className={available ? "product-stock-dot in-stock" : "product-stock-dot"}>{rental ? rentalAvailabilityLabel(rentalStatus ?? "rented") : available ? "In stock" : "Out of stock"}</span></div>
         <div className="product-card-actions">
-          <Link className="product-card-view" href={`/product/${product.slug}`}>View details</Link>
+          <a className="product-card-view" href={`/product/${product.slug}`}>View details</a>
           <button className="product-card-buy" type="button" disabled={!available} onClick={handleBuyNow}>{available ? (rental ? "Rent now" : "Buy now") : (rental ? rentalAvailabilityLabel(rentalStatus ?? "rented") : "Unavailable")}</button>
         </div>
       </div>

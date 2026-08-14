@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -167,9 +166,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
       <aside className={open ? "admin-sidebar open" : "admin-sidebar"}>
         <div className="admin-sidebar-brand">
-          <Link href="/admin" aria-label="Wow & Amazing owner dashboard">
+          <a href="/admin" aria-label="Wow & Amazing owner dashboard">
             <Image src="/brand/logo-reversed.png" alt="Wow & Amazing" width={420} height={160} priority />
-          </Link>
+          </a>
           <button className="admin-mobile-close" type="button" aria-label="Close menu" onClick={() => setOpen(false)}>
             <CloseIcon />
           </button>
@@ -191,11 +190,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 const active = item.href === "/admin" ? pathname === item.href : pathname.startsWith(item.href);
                 const Icon = item.icon;
                 return (
-                  <Link className={active ? "active" : ""} href={item.href} key={item.href} onClick={() => setOpen(false)}>
+                  <a className={active ? "active" : ""} href={item.href} key={item.href} onClick={() => setOpen(false)}>
                     <span className="admin-nav-icon"><Icon size={19} /></span>
                     <span className="admin-nav-copy"><strong>{item.label}</strong><small>{item.description}</small></span>
                     <ArrowRightIcon className="admin-nav-arrow" size={15} />
-                  </Link>
+                  </a>
                 );
               })}
             </div>
@@ -208,7 +207,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             <span><strong>{owner?.fullName ?? "Store Owner"}</strong><small>{owner?.email ?? "Authorised owner"}</small></span>
           </div>
           <div className="admin-sidebar-actions">
-            <Link href="/" target="_blank"><ArrowRightIcon size={16} /> Open Store</Link>
+            <a href="/" target="_blank"><ArrowRightIcon size={16} /> Open Store</a>
             <button type="button" onClick={signOut}>Sign out</button>
           </div>
         </div>
@@ -224,8 +223,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="admin-topbar-actions">
-            <Link className="admin-topbar-add" href="/admin/products/new"><PlusIcon size={17} /> Add Product</Link>
-            <Link className="admin-view-store" href="/" target="_blank">View Store <ArrowRightIcon size={16} /></Link>
+            <a className="admin-topbar-add" href="/admin/products/new"><PlusIcon size={17} /> Add Product</a>
+            <a className="admin-view-store" href="/" target="_blank">View Store <ArrowRightIcon size={16} /></a>
             <div className="admin-notification-menu">
               <button
                 className={notificationOpen ? "admin-notification-bell active" : "admin-notification-bell"}
@@ -241,11 +240,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <div className="admin-notification-popover">
                   <div className="admin-notification-popover-head">
                     <div><span>OWNER ALERTS</span><strong>Notifications</strong></div>
-                    <Link href="/admin/notifications" onClick={() => setNotificationOpen(false)}>View all</Link>
+                    <a href="/admin/notifications" onClick={() => setNotificationOpen(false)}>View all</a>
                   </div>
                   <div className="admin-notification-popover-list">
                     {notificationPayload.notifications.length ? notificationPayload.notifications.map((notification) => (
-                      <Link
+                      <a
                         className={!notification.read_at ? "unread" : ""}
                         href={notification.href || "/admin/notifications"}
                         key={notification.id}
@@ -256,10 +255,10 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                       >
                         <span className="admin-notification-popover-icon"><BellIcon size={17} /></span>
                         <span><strong>{notification.title}</strong><small>{notification.body}</small><time>{notificationTime.format(new Date(notification.created_at))}</time></span>
-                      </Link>
+                      </a>
                     )) : <div className="admin-notification-popover-empty"><BellIcon size={24} /><strong>No new alerts</strong><span>Paid orders and enquiries will appear here.</span></div>}
                   </div>
-                  <Link className="admin-notification-popover-footer" href="/admin/notifications" onClick={() => setNotificationOpen(false)}>Open notification centre <ArrowRightIcon size={15} /></Link>
+                  <a className="admin-notification-popover-footer" href="/admin/notifications" onClick={() => setNotificationOpen(false)}>Open notification centre <ArrowRightIcon size={15} /></a>
                 </div>
               ) : null}
             </div>

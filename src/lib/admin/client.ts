@@ -1,5 +1,6 @@
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
+
 export async function ownerFetch<T>(url: string, init: RequestInit = {}): Promise<T> {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) throw new Error("Supabase browser configuration is incomplete.");
