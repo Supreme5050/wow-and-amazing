@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRightIcon,
@@ -234,7 +233,11 @@ export function AdminNotifications() {
                 </div>
                 <div className="admin-notification-list-actions">
                   <time>{dateTime.format(new Date(notification.created_at))}</time>
-                  {notification.href ? <Link href={notification.href}>Open <ArrowRightIcon size={15} /></Link> : null}
+                  {notification.event_type === "test" ? (
+                    <span className="admin-notification-test-status">Test complete</span>
+                  ) : notification.href ? (
+                    <a href={notification.href}>Open <ArrowRightIcon size={15} /></a>
+                  ) : null}
                   {!notification.read_at ? <button type="button" disabled={busy === `read:${notification.id}`} onClick={() => markRead(notification.id)}>{busy === `read:${notification.id}` ? "Saving…" : "Mark read"}</button> : null}
                 </div>
               </article>
